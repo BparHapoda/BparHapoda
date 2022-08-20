@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
@@ -47,21 +48,23 @@ public class Console {
 
 
 
-    public void outputPageText(ArrayList <Page> pages) {
+    public void outputPageText(ArrayList <Page> pages,boolean withFind) {
 
         printPage(pages,index);
         Menu menu2 = new Menu("Открытие файла", true);
         menu2.add("предъидущая страница", () -> {
-            index--;
+            --index;
+            if(index<1){index=1;};
             printPage(pages,index);
         });
         menu2.add("следующая страница", () -> {
-            index++;
+            ++index;
+            if(index>pages.size()){index=pages.size();}
             printPage(pages,index);
         });
-
-        menu2.add("Поиск по документу", () ->{ index=1;outputPageText(find());});
-        menu2.add("Поиск и замена", ()->printPage(pages,1));
+if(withFind){
+        menu2.add("Поиск по документу", () ->{ index=1;outputPageText(find(),false);});
+        menu2.add("Поиск и замена", ()->printPage(pages,1));}
         menu2.add("Выход", () -> menu2.setExit(true));
         menu2.run();
 
@@ -83,13 +86,25 @@ public class Console {
         System.out.println("Введите поисковую строку :");
         TextDoc temp = new TextDoc();
         String string = temp.inputString();
-        //    pages.stream().peek((x)->{if (pageContains(x,string)){pagesFound.add(x);}}).collect(Collectors.toList());
-        pagesFound.add(pages.get(1));
+        pages.stream().peek((x)->{if (pageContains(x,string)){pagesFound.add(addSelection(x,string));}}).collect(Collectors.toList());
         System.out.println(pagesFound.size());
 return pagesFound;
     }
     public boolean pageContains (Page page,String string ){
-        page.getText().stream().peek((x)->{if(x.contains(string)){}});
+
+        List<String> find = page.getText().stream().filter(x -> x.contains(string)).toList();
+        if (find.size()==0){return false;}
+
         return true;
+    }
+    public Page addSelection (Page page,String string){
+        String replacement = "\u001B[33m"+string+"\u001B[0m";
+        for(int i = 0;i<page.getText().size();i++){
+            if(page.getText().get(i).contains(string)){
+              String x=  page.getText().get(i).replaceAll(string,replacement);
+              page.getText().set(i,x);
+            }
+        }
+        return page;
     }
 }

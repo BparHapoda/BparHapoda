@@ -85,13 +85,7 @@ public class TextDoc implements Serializable {
 
     public void print(String string) {
         Console console = new Console(12, 25);
-        console.outputPageText(console.create(text));
-
-    }
-    public void printFound(String string) {
-        Console consoleFound = new Console(12, 25);
-        //   consoleFound.createFound(text);
-      //  consoleFound.outputPageText();
+        console.outputPageText(console.create(text),true);
 
     }
 

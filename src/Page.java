@@ -23,4 +23,5 @@ public class Page {
         System.out.println("Cтраница " + number);
         text.forEach(System.out::println);
     }
+
 }
