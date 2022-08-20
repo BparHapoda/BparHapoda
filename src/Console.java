@@ -49,8 +49,8 @@ public class Console {
 
 
     public void outputPageText(ArrayList <Page> pages,boolean withFind) {
-
-        printPage(pages,index);
+if (pages.size()==0){System.out.println("Информация не найдена");return;}
+        printPage(pages,1);
         Menu menu2 = new Menu("Открытие файла", true);
         menu2.add("предъидущая страница", () -> {
             --index;
@@ -63,7 +63,13 @@ public class Console {
             printPage(pages,index);
         });
 if(withFind){
-        menu2.add("Поиск по документу", () ->{ index=1;outputPageText(find(),false);});
+        menu2.add("Поиск по документу", () ->{
+            index=1;
+            ArrayList <Page> find = find();
+            if(find.size()>0){
+            outputPageText(find,false);}
+            else {System.out.println("Искомая строка не найдена");menu2.setExit(true);}
+        });
         menu2.add("Поиск и замена", ()->printPage(pages,1));}
         menu2.add("Выход", () -> menu2.setExit(true));
         menu2.run();
@@ -87,7 +93,6 @@ if(withFind){
         TextDoc temp = new TextDoc();
         String string = temp.inputString();
         pages.stream().peek((x)->{if (pageContains(x,string)){pagesFound.add(addSelection(x,string));}}).collect(Collectors.toList());
-        System.out.println(pagesFound.size());
 return pagesFound;
     }
     public boolean pageContains (Page page,String string ){
@@ -98,7 +103,7 @@ return pagesFound;
         return true;
     }
     public Page addSelection (Page page,String string){
-        String replacement = "\u001B[33m"+string+"\u001B[0m";
+        String replacement = "\033[43m"+string+"\u001B[0m";
         for(int i = 0;i<page.getText().size();i++){
             if(page.getText().get(i).contains(string)){
               String x=  page.getText().get(i).replaceAll(string,replacement);
