@@ -8,7 +8,7 @@ public interface Storage {
     void view();
 
 
-    boolean setRoot();
+    void setRoot();
 
     void save();
 

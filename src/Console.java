@@ -8,7 +8,7 @@ public class Console {
 
     private final int line;
     private final int symbolsInLine;
-  private   int index = 1;
+    private int index = 1;
 
     public Console(int line, int symbolsInLine) {
         this.line = line;
@@ -37,7 +37,7 @@ public class Console {
             }
 
             if (lines.size() == line || !stringTokenizer.hasMoreTokens()) {
-                pages.add(new Page(lines, pages.size() + 1));
+                pages.add(new Page(lines));
                 lines = new ArrayList<>();
             }
         }
@@ -46,68 +46,81 @@ public class Console {
     }
 
 
-
-
-    public void outputPageText(ArrayList <Page> pages,boolean withFind) {
-if (pages.size()==0){System.out.println("Информация не найдена");return;}
-        printPage(pages,1);
+    public void outputPageText(ArrayList<Page> pages, boolean withFind) {
+        if (pages.size() == 0) {
+            System.out.println("Информация не найдена");
+            return;
+        }
+        printPage(pages, 1);
         Menu menu2 = new Menu("Открытие файла", true);
         menu2.add("предъидущая страница", () -> {
             --index;
-            if(index<1){index=1;};
-            printPage(pages,index);
+            if (index < 1) {
+                index = 1;
+            }
+            printPage(pages, index);
         });
         menu2.add("следующая страница", () -> {
             ++index;
-            if(index>pages.size()){index=pages.size();}
-            printPage(pages,index);
+            if (index > pages.size()) {
+                index = pages.size();
+            }
+            printPage(pages, index);
         });
-if(withFind){
-        menu2.add("Поиск по документу", () ->{
-            index=1;
-            ArrayList <Page> find = find();
-            if(find.size()>0){
-            outputPageText(find,false);}
-            else {System.out.println("Искомая строка не найдена");menu2.setExit(true);}
-        });
-        menu2.add("Поиск и замена", ()->printPage(pages,1));}
-        menu2.add("Выход", () -> menu2.setExit(true));
+        if (withFind) {
+            menu2.add("Поиск по документу", () -> {
+                index = 1;
+                ArrayList<Page> find = find();
+                if (find.size() > 0) {
+                    outputPageText(find, false);
+                } else {
+                    System.out.println("Искомая строка не найдена");
+                    menu2.setExit(true);
+                }
+            });
+            menu2.add("Поиск и замена", () -> printPage(pages, 1));
+        }
+        menu2.add("Выход", () ->{ printPage(pages,1);menu2.setExit(true);});
         menu2.run();
 
 
     }
 
-    public void printPage(ArrayList <Page> pages,int index) {
+    public void printPage(ArrayList<Page> pages, int index) {
 
         if (index < 1) {
             index = 1;
-        }
-        else if (index > pages.size()) {
+        } else if (index > pages.size()) {
             index = pages.size();
         }
-        pages.get(index-1).getText().forEach(System.out::println);
+        pages.get(index - 1).getText().forEach(System.out::println);
     }
-    public ArrayList <Page> find(){
-        ArrayList <Page> pagesFound = new ArrayList<>();
+
+    public ArrayList<Page> find() {
+        ArrayList<Page> pagesFound = new ArrayList<>();
         System.out.println("Введите поисковую строку :");
         TextDoc temp = new TextDoc();
         String string = temp.inputString();
-        pages.stream().peek((x)->{if (pageContains(x,string)){pagesFound.add(addSelection(x,string));}}).collect(Collectors.toList());
-return pagesFound;
+        pages.stream().peek((x) -> {
+            if (pageContains(x, string)) {
+                pagesFound.add(addSelection(x, string));
+            }
+        }).collect(Collectors.toList());
+        return pagesFound;
     }
-    public boolean pageContains (Page page,String string ){
+
+    public boolean pageContains(Page page, String string) {
 
         List<String> find = page.getText().stream().filter(x -> x.contains(string)).toList();
-        if (find.size()==0){return false;}
-
-        return true;
+        return find.size() != 0;
     }
-    public Page addSelection (Page page,String string){
-        String replacement = "\033[43m"+string+"\u001B[0m";
-        for(int i = 0;i<page.getText().size();i++){
-            if(page.getText().get(i).contains(string)){
-              String x=  page.getText().get(i).replaceAll(string,replacement);
-              page.getText().set(i,x);
+
+    public Page addSelection(Page page, String string) {
+        String replacement = "\033[43m" + string + "\u001B[0m";
+        for (int i = 0; i < page.getText().size(); i++) {
+            if (page.getText().get(i).contains(string)) {
+                String x = page.getText().get(i).replaceAll(string, replacement);
+                page.getText().set(i, x);
             }
         }
         return page;

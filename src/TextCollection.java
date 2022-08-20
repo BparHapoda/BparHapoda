@@ -6,13 +6,7 @@ import java.util.stream.Stream;
 public class TextCollection implements Storage, Serializable {
     @Serial
     private static final long serialVersionUID = 5154197581460058884L;
-    String name;
     File file;
-
-    public TextCollection(String name, File file) {
-        this.name = name;
-        this.file = file;
-    }
 
     public TextCollection() {
     }
@@ -37,20 +31,24 @@ public class TextCollection implements Storage, Serializable {
         fileName.append(textDoc.inputString());
         fileName.append(".tdoc");
         System.out.println(fileName);
-        try (FileOutputStream fos = new FileOutputStream(fileName.toString());
+        saveFile(fileName.toString(), textDoc);
+
+
+    }
+
+    public void saveFile(String fileName, TextDoc textDoc) {
+        try (FileOutputStream fos = new FileOutputStream(fileName);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(textDoc);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public void view() {
         ArrayList<File> fileList = createFileList();
         for (File fileItem : fileList) {
-            Character array[] = new Character[fileItem.toString().length()];
+            Character[] array = new Character[fileItem.toString().length()];
             for (int i = 0; i < fileItem.toString().length(); i++) {
                 array[i] = fileItem.toString().charAt(i);
             }
@@ -59,7 +57,7 @@ public class TextCollection implements Storage, Serializable {
         }
     }
 
-    public ArrayList createFileList() {
+    public ArrayList<File> createFileList() {
         ArrayList<File> collection = new ArrayList<>();
         String regex = ".+tdoc$";
         for (File fileItem : file.listFiles()) {
@@ -71,36 +69,15 @@ public class TextCollection implements Storage, Serializable {
     }
 
 
-    public void create() throws IOException {
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
     public void setFile(File file) {
 
         this.file = file;
     }
 
-    public boolean setRoot() {
+    public void setRoot() {
         System.out.println("Введите путь к коллекции текстовых файлов:");
         Scanner scanner = new Scanner(System.in);
         String string = scanner.nextLine();
-        if (string.equals("ESC")) {
-            return false;
-        }
         File dir;
         do {
             dir = new File(string);
@@ -108,7 +85,7 @@ public class TextCollection implements Storage, Serializable {
         while (!dir.isDirectory() && !dir.exists());
         file = dir;
         save();
-        return true;
+
     }
 
     @Override
@@ -158,15 +135,14 @@ public class TextCollection implements Storage, Serializable {
         for (File x : fileList) {
             menu1.add(x.toString(), () -> {
                 TextDoc textDoc = storage.openFile(x);
-                String string =textDoc.getText();
-                textDoc.print(string);
+      //          String string = textDoc.getText();
+                textDoc.print();
             });
         }
         menu1.add("Выход", () -> menu1.setExit(true));
         menu1.run();
 
     }
-
 
 
     @Override
