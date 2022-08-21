@@ -80,7 +80,7 @@ private String name;
     }
 
     public void print() {
-        Console console = new Console(12, 25);
+        Console console = new Console(12, 100);
         console.outputPageText(console.create(text),true);
 
     }
