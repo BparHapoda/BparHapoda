@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a5c694a-715e-4a99-a692-fe18d7e865cf" name="Changes" comment="добавлен поиск в файле и печать выделенного текста">
+    <list default="true" id="8a5c694a-715e-4a99-a692-fe18d7e865cf" name="Changes" comment="поиск и замена">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConsoleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsoleApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Storage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TextCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TextDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextDoc.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661016376402</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="поиск и замена">
+      <created>1661071760110</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1661071760110</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="last commit" />
     <MESSAGE value="добавлен поиск в файле и печать выделенного текста" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлен поиск в файле и печать выделенного текста" />
+    <MESSAGE value="поиск и замена" />
+    <option name="LAST_COMMIT_MESSAGE" value="поиск и замена" />
   </component>
 </project>

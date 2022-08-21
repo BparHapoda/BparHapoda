@@ -18,5 +18,11 @@ public interface Storage {
 
     void showFileAtributes(Storage storage);
 
+    void deleteFile(Storage storage);
+
+    void delete(File file);
+
     TextDoc openFile(File file);
+
+    void sortTextCollection(Storage storage);
 }

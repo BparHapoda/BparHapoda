@@ -27,7 +27,8 @@ public class ConsoleApplication {
         menu.add("Задать корневую папку коллекции", storage::setRoot);
         menu.add("Показать коллекцию", storage::view);
         menu.add("Показать свойства файла", () -> storage.showFileAtributes(storage));
-        menu.add("Сортировка коллекции", System.out::println);
+        menu.add("Удалить файл", () -> storage.deleteFile(storage));
+        menu.add("Сортировка коллекции", ()-> storage.sortTextCollection (storage));
         menu.add("Выход", () -> {
             storage.save();
             menu.setExit(true);
