@@ -7,7 +7,7 @@ public class Menu {
     private final String name;
     private boolean exit;
     private final List<MenuPunkt> menuList = new ArrayList<>();
-    private boolean horizontal = false;
+    private final boolean horizontal;
 
     public Menu(String name, boolean horizontal) {
         this.name = name;
@@ -18,7 +18,6 @@ public class Menu {
 
         menuList.add(new MenuPunkt(name, menuAction));
     }
-
 
 
     public void setExit(boolean exit) {
@@ -65,7 +64,7 @@ public class Menu {
     public void run() {
 
         while (!exit) {
-            System.out.println("");
+            System.out.print("\n");
             printMenu();
             menuList.get(inputMenuNumber()).getMenuAction().actionRun();
         }

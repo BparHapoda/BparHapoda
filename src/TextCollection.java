@@ -1,21 +1,13 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class TextCollection implements Storage, Serializable {
     @Serial
     private static final long serialVersionUID = 5154197581460058884L;
-    String name;
     File file;
-
-    public TextCollection(String name, File file) {
-        this.name = name;
-        this.file = file;
-    }
-
-    public TextCollection() {
-    }
 
     @Override
     public void add() {
@@ -37,20 +29,25 @@ public class TextCollection implements Storage, Serializable {
         fileName.append(textDoc.inputString());
         fileName.append(".tdoc");
         System.out.println(fileName);
-        try (FileOutputStream fos = new FileOutputStream(fileName.toString());
+        textDoc.setName(fileName.toString());
+        saveFile(fileName.toString(), textDoc);
+
+
+    }
+
+    public void saveFile(String fileName, TextDoc textDoc) {
+        try (FileOutputStream fos = new FileOutputStream(fileName);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(textDoc);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public void view() {
         ArrayList<File> fileList = createFileList();
         for (File fileItem : fileList) {
-            Character array[] = new Character[fileItem.toString().length()];
+            Character[] array = new Character[fileItem.toString().length()];
             for (int i = 0; i < fileItem.toString().length(); i++) {
                 array[i] = fileItem.toString().charAt(i);
             }
@@ -58,8 +55,41 @@ public class TextCollection implements Storage, Serializable {
             System.out.print("\n");
         }
     }
+    public void sortTextCollection (Storage storage){
+        ArrayList<File> fileList = createFileList();
+        ArrayList<TextDoc> textDocs = new ArrayList<>();
+        for (File x : fileList) {
+                textDocs.add(storage.openFile(x));
+        }
+        Menu menu4 = new Menu("Сортировка коллекции",false);
+        menu4.add("Сортировка по длине текста",()->textDocs.stream().sorted(new Comparator<TextDoc>() {
+            @Override
+            public int compare(TextDoc o1, TextDoc o2) {
+if (o1.getText().length()<o2.getText().length()){return 1;}
+                if (o1.getText().length()>o2.getText().length()){return -1;}
+                return 0;
+            }
+        }).forEach((x)->System.out.println(x.getName())));
 
-    public ArrayList createFileList() {
+        menu4.add("Сортировка по дате создания",()->textDocs.stream().sorted(new Comparator<TextDoc>() {
+            @Override
+            public int compare(TextDoc o1, TextDoc o2) {
+                if (o2.getDate().isAfter(o1.getDate())){return 1;}
+                if (o2.getDate().isBefore(o1.getDate())){return -1;}
+                return 0;
+            }
+        }).forEach((x)->System.out.println(x.getName())));
+
+        menu4.add("Сортировка по автору",()->textDocs.stream().sorted(Comparator.comparing(TextDoc::getName)).
+                forEach((x)->System.out.println(x.getName()+" "+x.getAuthor())));
+
+
+        menu4.add("Выход",()->menu4.setExit(true));
+menu4.run();
+    }
+
+
+    public ArrayList<File> createFileList() {
         ArrayList<File> collection = new ArrayList<>();
         String regex = ".+tdoc$";
         for (File fileItem : file.listFiles()) {
@@ -71,36 +101,15 @@ public class TextCollection implements Storage, Serializable {
     }
 
 
-    public void create() throws IOException {
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
     public void setFile(File file) {
 
         this.file = file;
     }
 
-    public boolean setRoot() {
+    public void setRoot() {
         System.out.println("Введите путь к коллекции текстовых файлов:");
         Scanner scanner = new Scanner(System.in);
         String string = scanner.nextLine();
-        if (string.equals("ESC")) {
-            return false;
-        }
         File dir;
         do {
             dir = new File(string);
@@ -108,7 +117,7 @@ public class TextCollection implements Storage, Serializable {
         while (!dir.isDirectory() && !dir.exists());
         file = dir;
         save();
-        return true;
+
     }
 
     @Override
@@ -158,8 +167,8 @@ public class TextCollection implements Storage, Serializable {
         for (File x : fileList) {
             menu1.add(x.toString(), () -> {
                 TextDoc textDoc = storage.openFile(x);
-                String string =textDoc.getText();
-                textDoc.print(string);
+
+                textDoc.print();
             });
         }
         menu1.add("Выход", () -> menu1.setExit(true));
@@ -167,6 +176,25 @@ public class TextCollection implements Storage, Serializable {
 
     }
 
+    @Override
+    public void deleteFile(Storage storage) {
+        ArrayList<File> fileList = createFileList();
+        Menu menu = new Menu("Какой файл коллекции удалить :", false);
+        for (File x : fileList) {
+            menu.add(x.toString(), () -> {
+             storage.delete(x);
+                menu.setExit(true);
+            });
+        }
+        menu.add("Выход", () -> menu.setExit(true));
+        menu.run();
+
+    }
+    @Override
+    public void delete(File file) {
+        System.out.println(file);
+           if (file.delete()){System.out.println("Файл "+file+ "уcпешно удален");};
+    }
 
 
     @Override
@@ -181,6 +209,7 @@ public class TextCollection implements Storage, Serializable {
         }
 
     }
+
 
 
 }

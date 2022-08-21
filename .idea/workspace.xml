@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a5c694a-715e-4a99-a692-fe18d7e865cf" name="Changes" comment="last commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console.java" afterDir="false" />
-    </list>
+    <list default="true" id="8a5c694a-715e-4a99-a692-fe18d7e865cf" name="Changes" comment="version 0.9" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +16,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="forVictor" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -54,6 +56,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -87,7 +90,49 @@
       <option name="project" value="LOCAL" />
       <updated>1660986579947</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="добавлен поиск в файле и печать выделенного текста">
+      <created>1660990745780</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660990745780</updated>
+    </task>
+    <task id="LOCAL-00005" summary="добавлен поиск в файле и печать выделенного текста">
+      <created>1660990821921</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660990821921</updated>
+    </task>
+    <task id="LOCAL-00006" summary="добавлен поиск в файле и печать выделенного текста">
+      <created>1661016376402</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661016376402</updated>
+    </task>
+    <task id="LOCAL-00007" summary="поиск и замена">
+      <created>1661071760110</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1661071760110</updated>
+    </task>
+    <task id="LOCAL-00008" summary="поиск и замена">
+      <created>1661097136929</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1661097136929</updated>
+    </task>
+    <task id="LOCAL-00009" summary="version 0.9">
+      <created>1661098227270</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1661098227270</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,6 +148,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="last commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="last commit" />
+    <MESSAGE value="добавлен поиск в файле и печать выделенного текста" />
+    <MESSAGE value="поиск и замена" />
+    <MESSAGE value="version 0.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 0.9" />
   </component>
 </project>
