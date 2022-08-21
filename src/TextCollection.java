@@ -135,7 +135,7 @@ public class TextCollection implements Storage, Serializable {
         for (File x : fileList) {
             menu1.add(x.toString(), () -> {
                 TextDoc textDoc = storage.openFile(x);
-      //          String string = textDoc.getText();
+
                 textDoc.print();
             });
         }

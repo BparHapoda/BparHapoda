@@ -4,13 +4,7 @@
     <list default="true" id="8a5c694a-715e-4a99-a692-fe18d7e865cf" name="Changes" comment="добавлен поиск в файле и печать выделенного текста">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Storage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TextCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TextDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextDoc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textcollection.tcol" beforeDir="false" afterPath="$PROJECT_DIR$/textcollection.tcol" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660990821921</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="добавлен поиск в файле и печать выделенного текста">
+      <created>1661016376402</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661016376402</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -30,7 +30,6 @@ public class Console {
                 textLine.append(stringBuilder);
                 lines.add(textLine.toString());
                 textLine.delete(0, textLine.length());
-                //         textLine.append(stringBuilder);
             } else {
                 textLine.append(stringBuilder);
                 stringBuilder.delete(0, stringBuilder.length());
@@ -78,7 +77,14 @@ public class Console {
                     menu2.setExit(true);
                 }
             });
-            menu2.add("Поиск и замена", () -> printPage(pages, 1));
+            menu2.add("Поиск и замена", () -> {
+                TextDoc textDoc = new TextDoc();
+                System.out.println("Введите заменяемую строку:");
+                String input = textDoc.inputString();
+                System.out.println("Введите строку для замены:");
+                String output = textDoc.inputString();
+            outputPageText(findAndReplace(pages,input,output),true);
+            });
         }
         menu2.add("Выход", () ->{ printPage(pages,1);menu2.setExit(true);});
         menu2.run();
@@ -107,6 +113,19 @@ public class Console {
             }
         }).collect(Collectors.toList());
         return pagesFound;
+    }
+    public ArrayList<Page> findAndReplace (ArrayList <Page>pages,String input,String output){
+
+      for (Page page : pages){
+          for (int i=0;i<page.getText().size();i++
+          ){
+              String string=page.getText().get(i).replaceAll(input,output);
+              page.getText().set(i,string);
+
+          }
+      }
+
+      return  pages;
     }
 
     public boolean pageContains(Page page, String string) {
