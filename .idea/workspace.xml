@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8a5c694a-715e-4a99-a692-fe18d7e865cf" name="Changes" comment="поиск и замена">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConsoleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsoleApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Storage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TextCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TextDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextDoc.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661071760110</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="поиск и замена">
+      <created>1661097136929</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1661097136929</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

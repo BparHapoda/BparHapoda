@@ -80,6 +80,9 @@ if (o1.getText().length()<o2.getText().length()){return 1;}
             }
         }).forEach((x)->System.out.println(x.getName())));
 
+        menu4.add("Сортировка по автору",()->textDocs.stream().sorted(Comparator.comparing(TextDoc::getName)).forEach((x)->System.out.println(x.getName())));
+
+
         menu4.add("Выход",()->menu4.setExit(true));
 menu4.run();
     }
